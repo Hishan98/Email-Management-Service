@@ -18,14 +18,14 @@ Node.js is an open-source, cross-platform, back-end, JavaScript runtime environm
 
 ## How to run.
 
-For run this project you need to install Node js to your computer.you can learn it from this [video](https://www.youtube.com/watch?v=qYwLOXjAiwM).After installing Node js you have to open cmd and go to this project folder using
+To run this project you need to install Node js on your computer. you can learn it from this video. After installing Node js you have to open cmd and go to this project folder using 
 ```cd "Project Path"```
-then simply type 
+then simply type
 ```javascript
 npm start
 ```
-and hit enter.Then you can use Api testing tool like Postman to test this API.
-you need to pass these parameters to send a mail
+and hit enter. Then you can use an API testing tool like Postman to test this API. 
+You need to pass these parameters to send a mail
 ```javascript
 {
     "to": "Recevers@gmail.com",
@@ -33,7 +33,7 @@ you need to pass these parameters to send a mail
     "subject": "awesome!"
 }
 ```
-coppy id from the respoce of POST Request then use it to check GET and DELETE Requests.
+copy id from the response of POST Request then use it to check GET and DELETE Requests.
 
 
 ## Test Results.
