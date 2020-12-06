@@ -18,6 +18,6 @@ process.env.DB_CONNECT,
 app.use(express.json());
 
 //Rout Middlewares
-app.use('/api/user', authRoute);
+app.use('/v1', authRoute);
 
 app.listen(2010, () => console.log('Server Up And Running...')); 
