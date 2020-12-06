@@ -1,4 +1,4 @@
-# About.
+## About.
 Node.js is an open-source, cross-platform, back-end, JavaScript runtime environment that executes JavaScript code outside a web browser and this project is a Node.js based REST API back-end service which runs locally on port 2010 that delivers emails between 8 AM to 5 PM and stores them in a collection on Mongo DB.
 
 ## Used Packages.
@@ -15,6 +15,14 @@ Node.js is an open-source, cross-platform, back-end, JavaScript runtime environm
 - Post Request: http://localhost:2010/v1/emails
 - Get Request: http://localhost:2010/v1/emails/ **:email id**
 - Delete Request: http://localhost:2010/v1/emails/ **:email id**
+
+## How to run.
+
+For run this project you need to install Node js to your computer.you can learn it from this [video](https://www.youtube.com/watch?v=qYwLOXjAiwM).After installing Node js you have to open cmd and go to this project folder using
+```cd "Project Path"```
+then simply type 
+```npm start```
+and hit enter.Then you can use Api testing tool like Postman to test this API.
 
 ## Test Results.
 
