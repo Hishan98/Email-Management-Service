@@ -37,7 +37,7 @@ router.post('/emails', async (req,res) => {
         //Check whether the current Time is between 8.00 AM to 5.00 PM
         var date = new Date();
         var current_hour = date.getHours();
-        if((current_hour<8)||(current_hour>23)){
+        if((current_hour<8)||(current_hour>17)){
 
             var status = 'QUEUED';
             console.log('Email will be send after 8.00 AM');
