@@ -18,7 +18,7 @@ Node.js is an open-source, cross-platform, back-end, JavaScript runtime environm
 
 ## How to run.
 
-To run this project you need to install Node js on your computer. you can learn it from this video. After installing Node js you have to open cmd and go to this project folder using 
+To run this project you need to install Node js on your computer. you can learn it from this [video](https://www.youtube.com/watch?v=qYwLOXjAiwM). After installing Node js you have to open cmd and go to this project folder using 
 ```cd "Project Path"```
 then simply type
 ```javascript
