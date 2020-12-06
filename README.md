@@ -13,8 +13,8 @@ Node.js is an open-source, cross-platform, back-end, JavaScript runtime environm
 ## End Points.
 
 - Post Request: http://localhost:2010/v1/emails
-- Get Request: http://localhost:2010/v1/emails/**:email id**
-- Delete Request: http://localhost:2010/v1/emails/**:email id**
+- Get Request: http://localhost:2010/v1/emails/ **:email id**
+- Delete Request: http://localhost:2010/v1/emails/ **:email id**
 
 ## Test Results.
 
