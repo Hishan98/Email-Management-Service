@@ -32,13 +32,47 @@ router.post('/emails', async (req,res) => {
         status: status
     });
     try{
-        res.send({ id: id, status: status })
+        await user.save();
+        res.json({ id: id, status: status })
 
     }catch(err){ 
         res.status(400).send(err);
-        res.send({ id: id, status: 'FAILED' })
+        res.json({ id: id, status: 'FAILED' })
         console.log(err);
 
+    }
+});
+
+
+//Find a current status of an email
+router.get('/emails/', async (req, res) => {
+    var query = {id: req.body.id};
+    try{
+
+        const data = await User.find(query).select({ "content": 1,"status": 1, "_id": 0}); 
+        res.json(data);
+
+    }catch(err){
+        res.status(400).send(err);
+        console.log(err);
+    }
+});
+
+
+//Delete queued email
+router.delete('/emails/', async (req, res) => {
+    var query = {id: req.body.id};
+    
+    try{
+        await User.findOneAndRemove(query); 
+        res.send({
+            "id":req.body.id,
+            "deleted":"Email Successfully Deleted"
+        })
+
+    }catch(err){
+        res.status(400).send(err);
+        console.log(err);
     }
 });
 
