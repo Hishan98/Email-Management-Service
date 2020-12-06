@@ -1,39 +1,85 @@
 const router = require('express').Router();
 const User = require('../model/User');
+const crypto = require("crypto");
+const dotenv = require('dotenv');
+var nodemailer = require('nodemailer');
 const {mailsendValidation} = require('../validation');
 
 router.post('/emails', async (req,res) => {
 
     //Genarate ID
-    const crypto = require("crypto");
     const id = crypto.randomBytes(16).toString("hex");
-
-    //Check Time
-    var date = new Date();
-    var current_hour = date.getHours();
-    if((current_hour<8)||(current_hour>17)){
-        var status = 'QUEUED';
-        console.log('Email will be send after 8.00 AM');
-    }
-    else{
-        var status = 'SENT';
-        console.log('Email is eligible to send');
-    }
 
     //validate data !
     const {error} = mailsendValidation(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const user = new User({
-        id:id,
-        to:req.body.to,
-        content:req.body.content,
-        subject:req.body.subject,
-        status: status
-    });
     try{
-        await user.save();
-        res.json({ id: id, status: status })
+        
+        dotenv.config();
+
+        //Config mail Settings
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+            user: process.env.Email_Addr,
+            pass: process.env.Email_Pass
+            }
+        });
+        
+        var mailOptions = {
+            from: process.env.Email_Addr,
+            to: req.body.to,
+            subject: req.body.subject,
+            text: req.body.content
+        };
+
+        //Check whether the current Time is between 8.00 AM to 5.00 PM
+        var date = new Date();
+        var current_hour = date.getHours();
+        if((current_hour<8)||(current_hour>23)){
+
+            var status = 'QUEUED';
+            console.log('Email will be send after 8.00 AM');
+
+            //Save Data to mongo DB
+            const user = new User({
+                id:id,
+                to:req.body.to,
+                content:req.body.content,
+                subject:req.body.subject,
+                status: status
+            });
+            await user.save();
+            res.json({ id: id, status: status })
+
+        }
+        else{
+
+            var status = 'SENT';
+            console.log('Email is eligible to send');
+
+            //Send email
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+
+            //Save Data to mongo DB
+            const user = new User({
+                id:id,
+                to:req.body.to,
+                content:req.body.content,
+                subject:req.body.subject,
+                status: status
+            });
+            await user.save();
+            res.json({ id: id, status: status })
+        }
+
 
     }catch(err){ 
         res.status(400).send(err);
