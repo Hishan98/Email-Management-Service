@@ -17,7 +17,7 @@ Node.js is an open-source, cross-platform, back-end, JavaScript runtime environm
 - Delete Request: http://localhost:2010/v1/emails/**:email id**
 
 ## Test Results.
-____
+
 ### Post Request
 
 ![Post Req](https://user-images.githubusercontent.com/38062467/101287314-8a424680-3815-11eb-8688-3464010626dd.PNG)
